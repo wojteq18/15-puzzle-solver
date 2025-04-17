@@ -2,7 +2,7 @@ use crate::constants::{SIZE, PUZZLE_SIZE, MOVABLE_PIECE};
 //use rand::Rng;
 use rand::seq::SliceRandom; // Importujemy SliceRandom dla metody shuffle
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
 
 pub struct Field {
     value: usize,
@@ -15,9 +15,11 @@ impl Field {
     }
 }
 
+#[derive(Clone, Debug, Eq, PartialEq, Hash)]
 pub struct Board {
     fields: [Field; PUZZLE_SIZE],
     zero_position: usize,
+    how_many_correct: usize,
 }
 
 impl Board {
@@ -49,14 +51,15 @@ impl Board {
 
     pub fn new() -> Self {
         let mut fields = [Field { value: 0, index: 0 }; PUZZLE_SIZE];
-        let zero_position = 8; // The position of the empty space (0)
+        let zero_position = PUZZLE_SIZE - 1; // The position of the empty space (0)
+        let how_many_correct = 9;
 
         for i in 0..PUZZLE_SIZE {
             fields[i] = Field { value: (i + 1) % PUZZLE_SIZE, index: i };
 
         }
 
-        Board { fields, zero_position }
+        Board { fields, zero_position, how_many_correct }
     }
 
     pub fn print(&self) {
@@ -93,4 +96,34 @@ impl Board {
         self.fields[index1].index = index1;
         self.fields[index2].index = index2;
     }
+
+    pub fn how_many_correct(&mut self) -> usize {
+        let mut count = 0;
+        for i in 0..PUZZLE_SIZE{
+            if self.fields[i].index == (self.fields[i].value + 8) % PUZZLE_SIZE {
+                count += 1;
+            }
+        }
+        self.how_many_correct = count;
+        return count;
+    }
+
+    /*pub fn fix(&mut self) {
+        while self.how_many_correct != PUZZLE_SIZE - 1 {
+            let mut values = Vec::new();
+            let mov = self.find_movable_piece();
+    
+            for i in 0..mov.len() {
+                self.swap(self.get_zero_element(), mov[i]);
+                let y = self.how_many_correct();
+                values.push(y);
+                self.swap(mov[i], self.get_zero_element());
+            }
+    
+            if let Some((best_index, _)) = values.iter().enumerate().max_by_key(|&(_, &v)| v) {
+                self.swap(self.get_zero_element(), mov[best_index]);
+            }
+        }
+    }*/
+    
 }
