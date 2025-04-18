@@ -93,7 +93,7 @@ impl Board {
     pub fn how_many_correct(self) -> usize {
         let mut count = 0;
         for i in 0..PUZZLE_SIZE{
-            if self.fields[i].index == (self.fields[i].value + 8) % PUZZLE_SIZE {
+            if self.fields[i].index == (self.fields[i].value + PUZZLE_SIZE - 1) % PUZZLE_SIZE {
                 count += 1;
             }
         }
@@ -114,5 +114,25 @@ impl Board {
             }
         }
         return distance
+    }
+
+    pub fn test(&mut self) {
+        self.fields[0].value  = 1;
+        self.fields[1].value  = 2;
+        self.fields[2].value  = 8;
+        self.fields[3].value  = 3;
+        self.fields[4].value  = 5;
+        self.fields[5].value  = 6;
+        self.fields[6].value  = 4;
+        self.fields[7].value  = 12;
+        self.fields[8].value  = 13;
+        self.fields[9].value  = 7;
+        self.fields[10].value = 0;
+        self.fields[11].value = 15;
+        self.fields[12].value = 11;
+        self.fields[13].value = 9;
+        self.fields[14].value = 10;
+        self.fields[15].value = 14;
+        self.zero_position = 10;
     }
 }

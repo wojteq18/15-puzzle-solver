@@ -46,5 +46,7 @@ pub fn fix(board: &mut Board) {
                 queue.push(next_state.clone(), Reverse(next_state.estimated_cost));
             }
         }
+
+        //println!("wielkosc stosu: {}", visited.len());
     }
 }
