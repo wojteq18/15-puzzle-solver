@@ -12,7 +12,7 @@ pub struct Field {
 #[derive(Clone, Debug, Eq, PartialEq, Hash, Copy)]
 pub struct Board {
     fields: [Field; PUZZLE_SIZE],
-    zero_position: usize,
+    pub zero_position: usize,
     //how_many_correct: usize,
 }
 
@@ -58,11 +58,12 @@ impl Board {
     pub fn print(&self) {
         for i in 0..SIZE {
             for j in 0..SIZE {
-                print!("    {}    ", self.fields[i * SIZE + j].value);
+                print!("{:^5}", self.fields[i * SIZE + j].value);
             }
             println!();
         }
     }
+    
 
     pub fn shuffle(&mut self) {
         let mut numbers: Vec<usize> = (1..PUZZLE_SIZE).collect();
@@ -117,22 +118,23 @@ impl Board {
     }
 
     pub fn test(&mut self) {
-        self.fields[0].value  = 1;
-        self.fields[1].value  = 2;
-        self.fields[2].value  = 8;
-        self.fields[3].value  = 3;
-        self.fields[4].value  = 5;
-        self.fields[5].value  = 6;
-        self.fields[6].value  = 4;
-        self.fields[7].value  = 12;
+        self.fields[0].value  = 14;
+        self.fields[1].value  = 5;
+        self.fields[2].value  = 9;
+        self.fields[3].value  = 1;
+        self.fields[4].value  = 7;
+        self.fields[5].value  = 3;
+        self.fields[6].value  = 10;
+        self.fields[7].value  = 8;
         self.fields[8].value  = 13;
-        self.fields[9].value  = 7;
-        self.fields[10].value = 0;
-        self.fields[11].value = 15;
+        self.fields[9].value  = 6;   // puste pole
+        self.fields[10].value = 12;
+        self.fields[11].value = 2;
         self.fields[12].value = 11;
-        self.fields[13].value = 9;
-        self.fields[14].value = 10;
-        self.fields[15].value = 14;
-        self.zero_position = 10;
-    }
+        self.fields[13].value = 15;
+        self.fields[14].value = 4;
+        self.fields[15].value = 0;
+        self.zero_position = 15;
+        
+    }    
 }
