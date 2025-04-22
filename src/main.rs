@@ -9,6 +9,8 @@ fn main() {
     let mut board = Board::new();
     board.test();
     //board.shuffle();
+    let is_solvable = board.is_solvable();
+    println!("Is solvable: {}", is_solvable);
     board.print();
     let correct = board.how_many_correct();
     println!("Correct: {}", correct);

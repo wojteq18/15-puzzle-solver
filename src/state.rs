@@ -14,7 +14,7 @@ pub struct State {
 
 impl State {
     pub fn new(board: Board, cost: usize, parent: Option<Box<State>>) -> Self {
-        let heuristic = board.manhattan_distance();
+        let heuristic = board.manhattan_distance(); //heurystyka, liczba poprawnych elementów (manhattan)
         let estimated_cost = cost + heuristic;
         State {
             board,
@@ -26,6 +26,7 @@ impl State {
 }
 
 pub fn fix(board: &mut Board) {
+
 
     let mut visited = HashSet::new();
     let mut queue = PriorityQueue::new();
