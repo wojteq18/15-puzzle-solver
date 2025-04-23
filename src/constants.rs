@@ -1,2 +1,2 @@
-pub(crate) const SIZE: usize = 4;
+pub(crate) const SIZE: usize = 5;
 pub(crate) const PUZZLE_SIZE: usize = SIZE * SIZE;

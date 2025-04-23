@@ -7,8 +7,8 @@ use state::*;
 
 fn main() { 
     let mut board = Board::new();
-    board.test();
-    //board.shuffle();
+    //board.test();
+    board.shuffle();
     let is_solvable = board.is_solvable();
     println!("Is solvable: {}", is_solvable);
     board.print();
