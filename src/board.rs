@@ -135,7 +135,7 @@ pub fn find_movable_piece(&self) -> Vec<usize> {
     
 
     pub fn test(&mut self) {
-        self.fields = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 14, 0];
+        self.fields = [4, 8, 12, 11, 14, 3, 10, 15, 13, 6, 5, 2, 9, 1, 7, 0];
         self.zero_position = 15;
     }     
 }
