@@ -1,7 +1,6 @@
 use crate::constants::PUZZLE_SIZE;
 use crate::board::Board;
 use priority_queue::PriorityQueue;
-use std::collections::HashSet;
 use std::cmp::Reverse;
 use std::rc::Rc;
 use std::collections::HashMap;

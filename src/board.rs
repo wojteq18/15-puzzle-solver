@@ -1,6 +1,6 @@
 use crate::constants::{SIZE, PUZZLE_SIZE};
-//use rand::Rng;
-use rand::seq::SliceRandom; // Importujemy SliceRandom dla metody shuffle
+use rand::Rng;
+//use rand::seq::SliceRandom; // Importujemy SliceRandom dla metody shuffle
 
 /*#[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
 
@@ -65,13 +65,25 @@ pub fn find_movable_piece(&self) -> Vec<usize> {
         println!();
     }
 
-    pub fn shuffle(&mut self) {
+    /*pub fn shuffle(&mut self) {
         let mut numbers: Vec<usize> = (1..PUZZLE_SIZE).collect();
         let mut rng = rand::rng();
         numbers.shuffle(&mut rng);
         
         for i in 0..PUZZLE_SIZE - 1 {
             self.fields[i] = numbers[i];   
+        }
+    }*/
+
+    pub fn shuffle(&mut self, i: i32) {
+        let mut rng = rand::rng();
+
+        for _ in 0..i {
+            let movable_piece = self.find_movable_piece();
+            let length = movable_piece.len();
+            let random_index = rng.random_range(0..length);
+            let random_value = movable_piece[random_index];
+            self.swap(self.zero_position, random_value);
         }
     }
 
@@ -114,28 +126,8 @@ pub fn find_movable_piece(&self) -> Vec<usize> {
         return distance
     }
 
-    pub fn is_solvable(&self) -> bool {
-        let mut inversions = 0;
-        for i in 0..PUZZLE_SIZE {
-            if self.fields[i] == 0 {
-                continue;
-            }
-            for j in i + 1..PUZZLE_SIZE {
-                if self.fields[j] != 0 && self.fields[i] > self.fields[j] {
-                    inversions += 1;
-                }
-            }
-        }
-    
-        // Ponieważ zero zawsze jest na końcu (ostatni wiersz, licząc od dołu = 1)
-        inversions % 2 == 1
-    }
-    
-
-    
-
     pub fn test(&mut self) {
-        self.fields = [4, 8, 12, 11, 14, 3, 10, 15, 13, 6, 5, 2, 9, 1, 7, 0];
+        self.fields = [15, 14, 13, 9, 8, 3, 12, 1, 7, 11, 4, 2, 10, 5, 6, 0];
         self.zero_position = 15;
     }     
 }
