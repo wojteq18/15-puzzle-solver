@@ -17,3 +17,9 @@ Clone the repository and run the project using Cargo:
 
 ```bash
 cargo run
+
+---
+
+**This project was created for educational purposes as part of a university assignment at Wrocław University of Science and Technology for the course _Introduction to Artificial Intelligence_.**  
+**Final grade: 5.5**
+```
