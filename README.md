@@ -11,6 +11,10 @@ This is a Rust implementation of a solver for the classic **15 Puzzle** (4x4 sli
 - Uses `HashMap` to avoid revisiting states with higher or equal cost
 - Priority queue ensures optimal path is found based on estimated cost (A*)
 
+## Note
+This project was created for educational purposes as part of a university assignment at Wrocław University of Science and Technology for the course Introduction to Artificial Intelligence.
+Final grade: 5.5
+
 ## Usage
 
 Clone the repository and run the project using Cargo:
@@ -18,6 +22,4 @@ Clone the repository and run the project using Cargo:
 ```bash
 cargo run
 
-This project was created for educational purposes as part of a university assignment at Wrocław University of Science and Technology for the course Introduction to Artificial Intelligence.
-Final grade: 5.5
 
